@@ -3,15 +3,22 @@ kind: ConfigMap
 metadata:
   name: polis-server
 data:
-  # For admin functionality, fill this out
-  ADMIN_EMAILS: "[]"
-  ADMIN_EMAIL_DATA_EXPORT: ""
-  ADMIN_EMAIL_DATA_EXPORT_TEST: ""
-  ADMIN_EMAIL_EMAIL_TEST: ""
+  #General Settings
   ADMIN_UIDS: "[]"
+  GIT_HASH: ""
+  SERVER_ENV_FILE: ".env"
+
+  # Database
+  READ_ONLY_DATABASE_URL: ""
+  POSTGRES_DB: "polis-dev"
+  POSTGRES_PORT: "5432"
+  POSTGRES_HOST: "postgres:5432"
+  POSTGRES_USER: "postgres"
+  POSTGRES_PASSWORD: "oiPorg3Nrz0yqDLE"
+  DATABASE_URL: postgres://postgres:oiPorg3Nrz0yqDLE@postgres:5432/polis-dev
+  POSTGRES_DOCKER: "true"
 
   DATABASE_FOR_READS_NAME: DATABASE_URL
-  DATABASE_URL: postgres://postgres:oiPorg3Nrz0yqDLE@postgres:5432/polis-dev
 
   # These may be the deprecated settings for submitting web requests to the math worker
   WEBSERVER_USERNAME: ws-user
@@ -21,7 +28,9 @@ data:
   DEV_MODE: "true"
 
   # Set the domain name; make sure this matches what"s running on math node
-  DOMAIN_OVERRIDE: polis.local
+  DOMAIN_OVERRIDE: polisserver.com
+  API_DEV_HOSTNAME: polisserver.com
+  API_PROD_HOSTNAME: polisserver.com
 
   # Options: prod, preprod, dev
   MATH_ENV: dev
@@ -98,7 +107,7 @@ metadata:
   name: polis-server
 spec:
   rules:
-    - host: polis.local
+    - host: polisserver.com
       http:
         paths:
           - path: /
