@@ -1,4 +1,4 @@
-apiVersion: skaffold/v2beta28
+apiVersion: skaffold/v4beta11
 kind: Config
 metadata:
   name: polis
@@ -22,10 +22,11 @@ build:
     context: server
     docker:
       dockerfile: server/Dockerfile
+manifests:
+  rawYaml:
+  - manifests/polis-file-server.yaml
+  - manifests/polis-math.yaml
+  - manifests/postgres.yaml
+  - manifests/polis-server.yaml
 deploy:
   kubectl:
-    manifests:
-    - manifests/polis-file-server.yaml
-    - manifests/polis-math.yaml
-    - manifests/postgres.yaml
-    - manifests/polis-server.yaml
