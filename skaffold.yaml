@@ -24,6 +24,7 @@ build:
       dockerfile: server/Dockerfile
 manifests:
   rawYaml:
+  - manifests/polis-secret.yaml
   - manifests/polis-file-server.yaml
   - manifests/polis-math.yaml
   - manifests/postgres.yaml
